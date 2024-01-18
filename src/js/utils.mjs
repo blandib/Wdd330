@@ -21,3 +21,8 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// create a new function called getParams(param)
+export function getParams(param) {
+  return param;
+}
