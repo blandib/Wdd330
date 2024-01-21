@@ -159,6 +159,7 @@ export default class ProductList {
 
 
 /*function productCardTemplate(product) { 
+function productCardTemplate(product) { 
     return `<li class="product-card">
       <a href="../product_pages/index.html?product=${product.Id}">
       <img
@@ -176,6 +177,7 @@ export default class ProductList {
 
 
 /*export default  class ProductListing {
+class ProductListing {
     constructor() {
         this.products = {};
     }
@@ -193,6 +195,9 @@ export default class ProductList {
   }*/
 
  /* const renderList = (element, list) => {
+  }
+
+  const renderList = (element, list) => {
     // Create a container element
     const listElement = document.createElement('ul');
 
@@ -235,6 +240,11 @@ export default class ProductList {
       renderListWithTemplate(productCardTemplate, this.listElement, list);
       
     }*/
+    /*renderList(list) {
+        const htmlStrings = list.map(productCardTemplate);
+        this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
+      }
+  }*/
     /*renderList(list) {
         const htmlStrings = list.map(productCardTemplate);
         this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));

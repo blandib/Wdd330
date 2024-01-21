@@ -169,6 +169,7 @@ export default class ProductDetails {
 
 
 /*import ProductData from "./ProductData.mjs";
+import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import { setLocalStorage, getParam } from "./utils.mjs";
 
@@ -181,6 +182,7 @@ product.init();
 
 
 export default class ProductDetails {
+class ProductDetails {
     constructor(productId, dataSource) {
         // Initialization code here
         this.productId = productId;
@@ -190,6 +192,7 @@ export default class ProductDetails {
 
     async init() {
         
+        // Code for things that need to happen
 
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails("main");
@@ -217,3 +220,5 @@ renderProductDetails(selector) {
 }
 //export default new ProductDetails();*/
 
+/*}
+export default new ProductDetails();*/
