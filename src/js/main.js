@@ -1,8 +1,4 @@
-// Import the ProductData module
-//const ProductData = require('./ProductData');
 
-// Create an instance of ProductData
-//let productData = new ProductData();
 import {productData} from "./ProductData.mjs";
 import { ProductListing } from "./ProductList.mjs";
 
