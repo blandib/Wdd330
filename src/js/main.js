@@ -1,25 +1,11 @@
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-import {productData} from "./ProductData.mjs";
-import { ProductListing } from "./ProductList.mjs";
+loadHeaderFooter();
 
-const productData = new productData();
-class ProductListing {
-    constructor(products) {
-        this.products = products;
-    }
+const dataSource = new ProductData("tents");
+const element = document.querySelector(".product-list");
+const listing = new ProductList("Tents", dataSource, element);
 
-    displayProducts() {
-        this.products.forEach(product => {
-            console.log(product);
-        });
-    }
-}
-
-// Create an array of products
-let products = ["Products.Brand.Name", "Products.Name", "Product.Price"];
-
-// Create an instance of ProductListing
-let productListing = new ProductListing(products);
-
-// Display the list of products
-productListing.displayProducts();
+listing.init();
