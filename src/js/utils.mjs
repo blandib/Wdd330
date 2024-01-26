@@ -46,7 +46,7 @@ export function renderListWithTemplate(
 }
 
 //load the templates
-export function renderWithTemplate(templateFn, parentElement, data, callback) {
+export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
   //if there is a callback...call it and pass data
   if (callback) {
