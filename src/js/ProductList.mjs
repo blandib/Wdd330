@@ -24,7 +24,7 @@ export default class ProductList {
   }
   async init() {
     // our dataSource will return a Promise...so we can use await to resolve it.
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     // render the list
     this.renderList(list);
   }
@@ -32,4 +32,128 @@ export default class ProductList {
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
+
+  // render before doing the stretch
+  // renderList(list) {
+  //   const htmlStrings = list.map(productCardTemplate);
+  //   this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+  // }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -202,6 +202,39 @@ button {
   grid-column: 3;
 }
 
+.cart-footer-hide {
+  display: none;
+}
+
+/* Styles for category grid */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 1em;
+}
+
+.category-box {
+  flex: 1 1 calc(25% - 1em);
+  text-align: center;
+  background-color: white;
+}
+
+.category-box a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.category-box img {
+  max-width: 65%;
+  height: auto;
+}
+
+.category-box h3 {
+  margin-top: 0.5em;
+  font-size: var(--small-font);
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -213,6 +246,9 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+  .category-box {
+    flex: 1 1 calc(25% - 1em);
   }
 }
 
