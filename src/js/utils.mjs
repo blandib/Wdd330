@@ -31,3 +31,66 @@ export function getParam(param) {
 /*const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get('product')*/
+
+export async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  return template;
+}
+
+//import { loadTemplate } from './utils.mjs';
+
+/*export async function loadHeaderFooter() {
+    // Load the header and footer templates
+    const headerTemplate = await loadTemplate("header");
+    const footerTemplate = await loadTemplate("footer");
+
+    // Grab the header and footer elements out of the DOM
+    const headerElement = document.querySelector(headerTemplate);
+    const footerElement = document.querySelector(footerTemplate);
+
+    // Return the header and footer elements
+    return { headerElement, footerElement };
+}*/
+
+export   async function loadHeaderFooter() {
+      try {
+          // Load the header and footer templates
+          const headerTemplate = await loadTemplate('header');
+          const footerTemplate = await loadTemplate('footer');
+
+          // Grab the header and footer elements from the DOM
+          const headerElement = document.querySelector('#header');
+          const footerElement = document.querySelector('#footer');
+
+          // Render the header and footer
+          headerElement.innerHTML = headerTemplate;
+          footerElement.innerHTML = footerTemplate;
+  } catch (error) {
+      console.error(`Error loading header and footer: ${error}`);
+  }
+}
+
+loadHeaderFooter();
+
+export async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
+}
+
+export async function loadHeaderFooter() {
+       // Load the header and footer templates
+       const headerTemplate = await loadTemplate('header');
+       const footerTemplate = await loadTemplate('footer');
+
+      // Grab the header and footer elements out of the DOM
+      const headerElement = document.querySelector('#header');
+      const footerElement = document.querySelector('#footer');
+
+      // Render the header and footer
+     renderWithTemplate(headerElement, headerTemplate);
+     renderWithTemplate(footerElement, footerTemplate);
+}
