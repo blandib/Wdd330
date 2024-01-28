@@ -46,38 +46,27 @@ export function renderListWithTemplate(
 }
 
 //load the templates
-export function renderWithTemplate(
-  templateFn,
-  parentElement,
-  data,
-  position = "afterbegin",
-  clear = false
-) {
-  parentElement.insertAdjacentHTML("afterbegin", templateFn);
-  // if clear is true we need to clear out the contents of the parent.
-  if (clear) {
-    parentElement.innerHTML = "";
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  //if there is a callback...call it and pass data
+  if (callback) {
+    callback(data);
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-//Load,Grab and Render the header and footer 
+//Load,Grab and Render the header and footer
 export async function loadTemplate(path) {
-  const html = await fetch(path).then(convertToText);
-  const template = document.createElement('template');
-  template.innerHTML = html;
+  const res = await fetch(path);
+  const template = await res.text();
   return template;
 }
 
 export async function loadHeaderFooter(path) {
-  const template = loadTemplate(path)
-  const header = document.querySelector("header");
-  const footer = document.querySelector("footer");
-  renderWithTemplate();
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.querySelector("#main-header");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 }
-
-
-
-/*const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get('product')*/
