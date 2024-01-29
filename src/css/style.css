@@ -202,10 +202,6 @@ button {
   grid-column: 3;
 }
 
-.cart-footer-hide {
-  display: none;
-}
-
 /* Styles for category grid */
 .category-grid {
   display: flex;
