@@ -1,8 +1,10 @@
 import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import ShoppingCart from "./ShoppingCart.mjs";
 
 loadHeaderFooter();
 
-loadHeaderFooter();
+const cart = new ShoppingCart("so-cart", ".product-list");
+cart.renderCartContents();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -10,19 +12,32 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   
   const total = getTotal(cartItems);
-  document.querySelector("#cart-total").innerHTML = `Total: $${total}`;
+ // document.querySelector("#cart-total").innerHTML = `Total: $${total}`;
 
   const cartTotalElement = document.querySelector("#cart-total");
   if (total > 0) {
-    cartTotalElement.innerHTML = `Total: $${total}`;
+ //   cartTotalElement.innerHTML = `Total: $${total}`;
   } else {
     cartTotalElement.style.display = "none";
   }
 }
 
-const cart = new ShoppingCart("so-cart", ".product-list");
 
 function cartItemTemplate(item) {
+  const newItem = `<li class="cart-card divider">
+  <a href="#" class="cart-card__image">
+    <img
+      src="${item.Images.PrimaryLarge}"
+      alt="${item.NameWithoutBrand}"
+    />
+  </a>
+  <a href="#">
+    <h2 class="card__name">${item.Name}</h2>
+  </a>
+  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__price">$${item.FinalPrice}</p>
+</li>`;
     return newItem;
   }
 
