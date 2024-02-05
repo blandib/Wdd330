@@ -10,10 +10,8 @@ function convertToJson(res) {
 
 export default class ExternalServices {
   constructor(category) {
-    /*
-    **this.category = category;
-    **this.path = `/json/${this.category}.json`;
-    */
+    // this.category = category;
+    // this.path = `../json/${this.category}.json`;
   }
   async getData(category) {
     const response = await fetch(baseURL + `products/search/${category}`);
@@ -21,11 +19,11 @@ export default class ExternalServices {
     return data.Result;
   }
   async findProductById(id) {
-    const response = await fetch(`${baseURL}product/${id}`);
+    const response = await fetch(baseURL + `product/${id}`);
     const data = await convertToJson(response);
     return data.Result;
   }
-  async checkout(payload) {
+  /*async checkout(payload) {
     const options = {
       method: "POST",
       headers: {
@@ -34,7 +32,5 @@ export default class ExternalServices {
       body: JSON.stringify(payload),
     };
     return await fetch(baseURL + "checkout/", options).then(convertToJson);
-  }
-
+  }*/
 }
-

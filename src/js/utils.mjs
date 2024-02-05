@@ -20,15 +20,6 @@ export function getParam(param) {
   return product;
 }
 
-// set a listener for both touchend and click
-export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
-    event.preventDefault();
-    callback();
-  });
-  qs(selector).addEventListener("click", callback);
-}
-
 // function to take a list of objects and a template and insert the objects as HTML into the DOM
 export function renderListWithTemplate(
   templateFn,
@@ -69,4 +60,14 @@ export async function loadHeaderFooter(path) {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+}
+
+
+// set a listener for both touchend and click
+export function setClick(selector, callback) {
+  qs(selector).addEventListener("touchend", (event) => {
+    event.preventDefault();
+    callback();
+  });
+  qs(selector).addEventListener("click", callback);
 }

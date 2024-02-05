@@ -31,5 +31,9 @@ export default class ProductList {
   // render after doing the first stretch
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
+  // render before doing the stretch
+  //const htmlStrings = list.map(productCardTemplate);
+  //this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+  
   }
 }
