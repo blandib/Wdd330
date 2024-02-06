@@ -227,3 +227,13 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/*Checkout form*/
+form{
+  background-color: #f0a868;
+}
+form label, form input{
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+}

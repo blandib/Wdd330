@@ -38,7 +38,7 @@ export default class ProductDetails {
 
 
   addToCart() {
-    let cartContents = getLocalStorage("so-cart");
+    let cartContents = getLocalStorage("so-cart") || [];
     if (!cartContents) {
       cartContents = [];
     }

@@ -25,7 +25,7 @@ export default class ShoppingCart {
     this.parentSelector = parentSelector;
   }
   renderCartContents() {
-    const cartItems = getLocalStorage(this.key);
+    const cartItems = getLocalStorage(this.key)|| [];
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   }

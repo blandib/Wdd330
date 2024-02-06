@@ -1,9 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
-
-
 const services = new ExternalServices();
+
 function formDataToJSON(formElement) {
   const formData = new FormData(formElement),
     convertedJSON = {};
@@ -46,9 +45,11 @@ export default class CheckoutProcess {
   }
 
   calculateItemSummary() {
-    // calculate and display the total amount of the items in the cart, and the number of items.
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
+    );
+    const itemNumElement = document.querySelector(
+      this.outputSelector + " #num-items"
     );
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
@@ -95,6 +96,7 @@ export default class CheckoutProcess {
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
     console.log(json);
+   /* 
     // takes a form element and returns an object where the key is the "name" of the form input.
     function formDataToJSON(form) {
       const formData = new FormData(form),
@@ -105,7 +107,7 @@ export default class CheckoutProcess {
       });
 
       return convertedJSON;
-    }
+    }*/
     /* call the checkout method in our ExternalServices module and send it our data object.*/
     try {
       const res = await services.checkout(json);
