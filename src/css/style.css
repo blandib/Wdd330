@@ -209,6 +209,35 @@ button {
   list-style-type: none;
 }
 
+/* Styles for category grid */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 1em;
+}
+
+.category-box {
+  flex: 1 1 calc(25% - 1em);
+  text-align: center;
+  background-color: white;
+}
+
+.category-box a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.category-box img {
+  max-width: 65%;
+  height: auto;
+}
+
+.category-box h3 {
+  margin-top: 0.5em;
+  font-size: var(--small-font);
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -221,7 +250,12 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  .category-box {
+    flex: 1 1 calc(25% - 1em);
+  }
 }
+
+
 
 footer {
   font-size: var(--small-font);
@@ -236,4 +270,18 @@ form label, form input{
   display: flex;
   flex-direction: column;
   margin-left: 0;
+}
+
+
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
 }

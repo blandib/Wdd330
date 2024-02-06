@@ -4,9 +4,9 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images.PrimaryLarge}"
-      alt="${item.NameWithoutBrand}"
-    >
+      src="${item.Image}"
+      alt="${item.Name}"
+    />
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
@@ -25,7 +25,7 @@ export default class ShoppingCart {
     this.parentSelector = parentSelector;
   }
   renderCartContents() {
-    const cartItems = getLocalStorage(this.key)|| [];
+    const cartItems = getLocalStorage(this.key);
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   }
