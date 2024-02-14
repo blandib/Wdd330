@@ -1,16 +1,25 @@
-import ProductData from "./ProductData.mjs";
-import ProductDetails from "./ProductDetails.mjs";
 import { setLocalStorage, getParam } from "./utils.mjs";
 
-const productId = getParam("product");
-const dataSource = new ProductData("tents");
+function productDetailsTemplate(product) {
+    return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
+      <h2 class="divider">${product.NameWithoutBrand}</h2>
+      <img
+        class="divider"
+        src="${product.Images.PrimaryLarge}"
+        alt="${product.NameWithoutBrand}"
+      />
+      <p class="product-card__price">$${product.FinalPrice}</p>
+      <p class="product__color">${product.Colors[0].ColorName}</p>
+      <p class="product__description">
+      ${product.DescriptionHtmlSimple}
+      </p>
+      <div class="product-detail__add">
+        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+      </div></section>`;
+  }
 
 
-const product = new ProductDetails(productId, dataSource);
-product.init();
-
-
-class ProductDetails {
+export default class ProductDetails {
     constructor(productId, dataSource) {
         // Initialization code here
         this.productId = productId;
@@ -27,15 +36,14 @@ class ProductDetails {
         .getElementById("addToCart")
         .addEventListener("click", this.addToCart.bind(this));
     }
-
-    // Add other methods as needed
     addToCart() {
-        let cartContents = getLocalStorage("so-cart");
-        if (!cartContents) {
-          cartContents = [];
-        }
-        cartContents.push(this.product);
-    setLocalStorage("so-cart", cartContents);
+        setLocalStorage("so-cart", this.product);
+    }
+    renderProductDetails(selector) {
+        const element = document.querySelector(selector);
+        element.insertAdjacentHTML(
+          "afterBegin",
+          productDetailsTemplate(this.product)
+        );
+    }
 }
-}
-export default new ProductDetails();

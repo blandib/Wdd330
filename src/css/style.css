@@ -122,6 +122,19 @@ button {
 .products {
   padding: 0.5em;
 }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 1.5em;
+}
+.product-grid li {
+  list-style: none;
+}
+.product-grid a {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
 .product-list {
   display: flex;
   flex-flow: row wrap;
