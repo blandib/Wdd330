@@ -1,4 +1,4 @@
-import { setLocalStorage, getParam } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, getParam } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -37,7 +37,19 @@ export default class ProductDetails {
         .addEventListener("click", this.addToCart.bind(this));
     }
     addToCart() {
-        setLocalStorage("so-cart", this.product);
+      console.log("added to cart", this.product.Id);
+      if (!getLocalStorage("so-cart")) {
+        // console.log("local storage is empty");
+        let cartContents = [this.product];
+        setLocalStorage("so-cart", cartContents);
+        // console.log("cart contents", getLocalStorage("so-cart"));
+      } else {
+        let newCartContents = getLocalStorage("so-cart");
+        console.log("local storage is not empty", newCartContents);
+        newCartContents.push(this.product);
+        // console.log("print local stirage after pushing new item", localStorage);
+        setLocalStorage("so-cart", newCartContents);
+      }
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
