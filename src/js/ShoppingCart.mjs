@@ -1,7 +1,8 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
   
   function cartItemTemplate(item) {
     return `<li class="cart-card divider">
+    <button id="removeFromCart" data-id="${item.Id}">X</button>
     <a href="#" class="cart-card__image">
       <img
         src="${item.Images.PrimarySmall}"
@@ -18,17 +19,48 @@ import { getLocalStorage } from "./utils.mjs";
   }
 
 export default class ShoppingCart {
-    constructor() {
-        // 
+    constructor(key, parentSelector) {
+      this.key = key;
+      this.parentSelector = parentSelector;
     }
-    init() {
+    async init() {
         this.renderCartContents();
-    }
+        const remove = document.querySelectorAll("[id='removeFromCart']");
+        const cart = this;
+        remove.forEach(function(item) {
+            item.addEventListener("click", function() {
+                cart.removeItem(item.dataset.id);
+              });
+        });
+  }
     renderCartContents() {
-        const cartItems = getLocalStorage("so-cart");
-        // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-        const htmlItems = cartItemTemplate(cartItems);
-        // document.querySelector(".product-list").innerHTML = htmlItems.join("");
-        document.querySelector(".product-list").innerHTML = htmlItems;
+        const cartItems = getLocalStorage(this.key);
+        console.log("loaded cart contents", cartItems);
+        const totalPrice = document.querySelector(".cart-footer");
+        if (cartItems.length === 0) {
+          totalPrice.style.display = "none";
+        } else {
+          totalPrice.style.display = "block";
+          this.displayTotal();
+        }
+        const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+        // const htmlItems = cartItemTemplate(cartItems);
+        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+        // document.querySelector(".product-list").innerHTML = htmlItems;
+    }
+    removeItem(item) {
+      const cartItems = getLocalStorage(this.key);
+      const filteredArr = cartItems.filter(i => i.Id !== item);
+      setLocalStorage("so-cart", filteredArr);
+      this.init();
+    }
+    displayTotal() {
+      const cartItems = getLocalStorage(this.key);
+      let totalPrice = 0;
+      cartItems.forEach(function(item) {
+        console.log(item.FinalPrice);
+        totalPrice += item.FinalPrice;
+      });
+      document.querySelector(".cart-total").innerHTML = totalPrice;
     }
 }
