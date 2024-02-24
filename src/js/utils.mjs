@@ -81,20 +81,7 @@ export async function loadTemplate(path) {
   return template;
 }
 
-//import { loadTemplate } from './utils.mjs';
 
-/*export async function loadHeaderFooter() {
-    // Load the header and footer templates
-    const headerTemplate = await loadTemplate("header");
-    const footerTemplate = await loadTemplate("footer");
-
-    // Grab the header and footer elements out of the DOM
-    const headerElement = document.querySelector(headerTemplate);
-    const footerElement = document.querySelector(footerTemplate);
-
-    // Return the header and footer elements
-    return { headerElement, footerElement };
-}*/
 
 export   async function loadHeaderFooter() {
       try {
@@ -135,4 +122,30 @@ export async function loadHeaderFooter() {
       // Render the header and footer
      renderWithTemplate(headerElement, headerTemplate);
      renderWithTemplate(footerElement, footerTemplate);
+}
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+  const main = document.querySelector("main");
+  main.prepend(alert);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if (scroll) window.scrollTo(0, 0);
+
+  // left this here to show how you could remove the alert automatically after a certain amount of time.
+  // setTimeout(function () {
+  //   main.removeChild(alert);
+  // }, duration);
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
