@@ -1,6 +1,6 @@
 import { setLocalStorage, getLocalStorage, getParam } from "./utils.mjs";
 
-function productDetailsTemplate(product) {
+function productDetailsTemplate(product, discount) {
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
       <h2 class="divider">${product.NameWithoutBrand}</h2>
       <img
@@ -9,6 +9,7 @@ function productDetailsTemplate(product) {
         alt="${product.NameWithoutBrand}"
       />
       <p class="product-card__price">$${product.FinalPrice}</p>
+      <div class="discount">-%${discount} discount</div>
       <p class="product__color">${product.Colors[0].ColorName}</p>
       <p class="product__description">
       ${product.DescriptionHtmlSimple}
@@ -53,9 +54,17 @@ export default class ProductDetails {
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
+        const discount = this.getDiscount(this.product);
         element.insertAdjacentHTML(
           "afterBegin",
-          productDetailsTemplate(this.product)
+          productDetailsTemplate(this.product, discount)
         );
+    }
+    getDiscount(product) {
+      const retailPrice = product.SuggestedRetailPrice;
+      const finalPrice = product.FinalPrice;
+      const discounted = retailPrice - finalPrice;
+      const discount = discounted * 100 / retailPrice;
+      return Math.round(discount);
     }
 }

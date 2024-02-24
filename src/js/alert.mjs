@@ -7,7 +7,7 @@ function alertItem(alert) {
 
 export default class Alert {
     constructor() {
-        this.alert = fetch("../public/json/alerts.json");
+        this.alert = fetch("../json/alerts.json");
     }
     async init() {
         const alert = await this.alert;
