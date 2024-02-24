@@ -1,0 +1,20 @@
+[{
+    "message": "this is only a test",
+    "background": "darkblue",
+    "color": "white"
+},
+{
+    "message": "this is only a test",
+    "background": "red",
+    "color": "white"
+},
+{
+    "message": "this is only a test",
+    "background": "hotpink",
+    "color": "white"
+},
+{
+    "message": "this is only a test",
+    "background": "black",
+    "color": "white"
+}]
