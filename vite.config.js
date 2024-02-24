@@ -11,8 +11,7 @@ export default defineConfig({
               main: resolve(__dirname, "src/index.html"),
               cart: resolve(__dirname, "src/cart/index.html"),
               product: resolve(__dirname, "src/product_pages/index.html"),
-              product_listing: resolve(__dirname, "src/product_listing/index.html"),
-              src: resolve(__dirname, "src/public/json")
+              product_listing: resolve(__dirname, "src/product_listing/index.html")
       },
     },
   },
